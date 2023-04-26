@@ -47,7 +47,7 @@ export default function Chat() {
             showOnlinePeople(messageData.online);
         } else if ('text' in messageData){
             if (messageData.sender === selectedUserId) {
-                setMessages(prev => ([...prev,{...messageData}]));
+                setMessages(prev => ([...prev, {...messageData}]));
 
             }
         }
@@ -64,7 +64,7 @@ export default function Chat() {
 
     }
 
-    function sendMessage(ev, file=null) {
+    function sendMessage(ev, file = null) {
         if (ev) ev.preventDefault();
         ws.send(JSON.stringify({
                 recipient: selectedUserId,
@@ -80,8 +80,8 @@ export default function Chat() {
             setNewMessageText('');
             setMessages(prev => ([...prev,{
                 text: newMessageText,
-                sender:id,
-                recipient:selectedUserId,
+                sender: id,
+                recipient: selectedUserId,
                 _id: Date.now(),
             }]));
 
@@ -133,7 +133,7 @@ export default function Chat() {
           });
         }
 
-    }, selectedUserId);
+    }, [selectedUserId]);
 
     const onlinePeopleExclOurUser = {...onlinePeople};
     delete onlinePeopleExclOurUser[id];
